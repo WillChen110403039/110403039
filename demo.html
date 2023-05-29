@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>歡樂期末考之樂透猜猜樂</title>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <link rel="shortcut icon"href="image/k.jpg">
+</head>
+	<body>
+	<div style="background-color:#F1E1FF">
+		<h1><center><span style="color:#FFFFFF">樂透遊戲</span></h1>
+		<p><h2><center>遊戲規則：請在下方輸入框中輸入 3 個號碼（範圍為1~10），然後按下開獎按鈕。</h2></p>
+		<hr color="#8600FF" size="6">
+		<p><h3><center><span style="color:#FFD306">頭獎：恭喜全部對中</span></h3></p>
+		<p><h3><center><span style="color:#7B7B7B">貳獎：恭喜中2個號碼</span></h3></p>
+		<p><h3><center><span style="color:#A23400">參獎：恭喜中1個號碼</span></h3></p>
+		<p id="result"><center></p>
+		<input type="text" id="number1" placeholder="號碼1">
+		<input type="text" id="number2" placeholder="號碼2">
+		<input type="text" id="number3" placeholder="號碼3">
+		<button onclick="startGame()">進行開獎!</button>
+		<button onclick="resetGame()">重新開始:(</button>
+		<br>
+		<br>
+		<center><a href="https://www.taiwanlottery.com.tw/index_new.aspx" target="iframe_a"><img class="style1" src="image/l.jpg"alt="台灣彩券"width="auto"height="auto"></a>
+		<h4><center><span style="color:	#01814A">(可點選圖片詳閱台灣彩券網站)</span></h4>
+	</div>
+
+    <script>
+		function startGame() {
+		var number1 = parseInt(document.getElementById("number1").value);
+		var number2 = parseInt(document.getElementById("number2").value);
+		var number3 = parseInt(document.getElementById("number3").value);
+
+		// 檢查輸入是否有效
+		if (!isValidInput(number1) || !isValidInput(number2) || !isValidInput(number3) || hasDuplicateNumbers(number1, number2, number3)) {
+		alert("請輸入有效且不重複的號碼！");
+		resetGame();
+		return;
+		}
+
+		var winningNumbers = generateWinningNumbers();
+		var matchedCount = countMatchingNumbers(number1, number2, number3, winningNumbers);
+
+		var resultElement = document.getElementById("result");
+		resultElement.innerHTML = "";
+
+		if (matchedCount === 3) {
+			resultElement.innerHTML = "恭喜你中了頭獎 獲得獎金1000元！";
+			resultElement.className = "winning-text";
+		} else if (matchedCount === 2) {
+			resultElement.innerHTML = "恭喜你中了貳獎 獲得獎金800元！";
+			resultElement.className = "winning-text";
+		} else if (matchedCount === 1) {
+			resultElement.innerHTML = "恭喜你中了參獎 獲得獎金600元！";
+			resultElement.className = "winning-text";
+		} else {
+			resultElement.innerHTML = "很抱歉，沒有中獎。";
+			resultElement.className = "losing-text";
+		}
+		}
+
+		function resetGame() {
+		document.getElementById("number1").value = "";
+		document.getElementById("number2").value = "";
+		document.getElementById("number3").value = "";
+		document.getElementById("result").innerHTML = "";
+		}
+
+		function isValidInput(number) {
+		return !isNaN(number) && number >= 1 && number <= 10;
+		}
+
+		function hasDuplicateNumbers(number1, number2, number3) {
+		return number1 === number2 || number1 === number3 || number2 === number3;
+		}
+
+		function generateWinningNumbers() {
+		var numbers = [];
+		while (numbers.length < 3) {
+			var randomNumber = Math.floor(Math.random() * 10) + 1;
+			if (!numbers.includes(randomNumber)) {
+			numbers.push(randomNumber);
+			}
+		}
+		return numbers;
+		}
+
+		function countMatchingNumbers(number1, number2, number3, winningNumbers) {
+		var count = 0;
+		if (winningNumbers.includes(number1)) {
+			count++;
+		}
+		if (winningNumbers.includes(number2)) {
+			count++;
+		}
+		if (winningNumbers.includes(number3)) {
+			count++;
+		}
+		return count;
+		}
+	</script>
+    <script>
+	alert("你準備好了嗎?")
+	alert("請好好選號喔!")
+    </script>
+	</body>
+</html>
