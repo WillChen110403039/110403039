@@ -24,14 +24,14 @@
 		<center><a href="https://www.taiwanlottery.com.tw/index_new.aspx" target="iframe_a"><img class="style1" src="image/l.jpg"alt="台灣彩券"width="auto"height="auto"></a>
 		<h4><center><span style="color:	#01814A">(可點選圖片詳閱台灣彩券網站)</span></h4>
 	</div>
-
+/*第一題*/
     <script>
 		function startGame() {
 		var number1 = parseInt(document.getElementById("number1").value);
 		var number2 = parseInt(document.getElementById("number2").value);
 		var number3 = parseInt(document.getElementById("number3").value);
 
-		// 檢查輸入是否有效
+/*第五題*/
 		if (!isValidInput(number1) || !isValidInput(number2) || !isValidInput(number3) || hasDuplicateNumbers(number1, number2, number3)) {
 		alert("請輸入有效且不重複的號碼！");
 		resetGame();
@@ -43,7 +43,7 @@
 
 		var resultElement = document.getElementById("result");
 		resultElement.innerHTML = "";
-
+/*第二題*/
 		if (matchedCount === 3) {
 			resultElement.innerHTML = "恭喜你中了頭獎 獲得獎金1000元！";
 			resultElement.className = "winning-text";
@@ -58,7 +58,7 @@
 			resultElement.className = "losing-text";
 		}
 		}
-
+/*第四題*/
 		function resetGame() {
 		document.getElementById("number1").value = "";
 		document.getElementById("number2").value = "";
